@@ -1,0 +1,13 @@
+read_model -i exclusion_mutua.smv
+flatten_hierarchy
+encode_variables
+build_model
+check_ltlspec -p "! F (prg1.location = c & prg2.location = c)"
+pick_state -i
+check_ltlspec -p "F (prg1.location = c)"
+check_ltlspec -p "F (prg2.location = c)"
+check_ltlspec -p "G ! (prg1.location = c)"
+check_ltlspec -p "G ! (prg2.location = c)"
+check_ctlspec -p "EF (prg1.location = c)"
+check_ctlspec -p "EF (prg2.location = c)"
+quit

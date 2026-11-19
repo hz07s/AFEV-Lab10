@@ -1,0 +1,11 @@
+read_model -i puente.smv
+flatten_hierarchy
+encode_variables
+build_model
+check_ltlspec -p "G ! (norte.pos = puente & sur.pos = puente)"
+check_ltlspec -p "G ! (norte.pos = puente)"
+check_ltlspec -p "G ! (sur.pos = puente)"
+check_ctlspec -p "EF (norte.pos = puente)"
+check_ctlspec -p "EF (sur.pos = puente)"
+print_reachable_states
+quit

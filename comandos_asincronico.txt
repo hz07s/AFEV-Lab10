@@ -1,0 +1,8 @@
+read_model -i asincronico.smv
+flatten_hierarchy
+encode_variables
+build_model
+check_ltlspec -p "! F (tl1.state = g & tl2.state = g)"
+pick_state -i
+print_reachable_states -v
+quit

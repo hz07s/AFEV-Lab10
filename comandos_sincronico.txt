@@ -1,0 +1,9 @@
+read_model -i sincronico.smv
+flatten_hierarchy
+encode_variables
+build_model
+check_ltlspec -p "F (tl1.state = g & tl2.state = g)"
+check_ctlspec -p "EF (tl1.state = g & tl2.state = g)"
+check_ltlspec -p "G ! (tl1.state = g & tl2.state = g)"
+print_reachable_states -v
+quit

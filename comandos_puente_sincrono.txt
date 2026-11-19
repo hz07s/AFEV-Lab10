@@ -1,0 +1,9 @@
+read_model -i puente_sincrono.smv
+flatten_hierarchy
+encode_variables
+build_model
+check_ltlspec -p "G ! (norte.pos = puente & sur.pos = puente)"
+reset
+read_model -i puente_sincrono_directo.smv
+flatten_hierarchy
+quit

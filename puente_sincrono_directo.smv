@@ -1,0 +1,25 @@
+MODULE robot(puente_libre)
+VAR
+    pos : {fuera, espera, puente, salida};
+ASSIGN
+    init(pos) := fuera;
+    next(pos) := case
+                     pos = fuera : {fuera, espera};
+                     pos = espera & puente_libre : puente;
+                     pos = puente : {puente, salida};
+                     pos = salida : fuera;
+                     TRUE : pos;
+                 esac;
+    next(puente_libre) := case
+                              pos = espera & puente_libre : FALSE;
+                              pos = salida : TRUE;
+                              TRUE : puente_libre;
+                          esac;
+
+MODULE main
+VAR
+    puente_libre : boolean;
+    norte : robot(puente_libre);
+    sur : robot(puente_libre);
+ASSIGN
+    init(puente_libre) := TRUE;

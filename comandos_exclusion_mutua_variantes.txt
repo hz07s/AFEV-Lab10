@@ -1,0 +1,14 @@
+read_model -i exclusion_mutua_bloqueada.smv
+flatten_hierarchy
+encode_variables
+build_model
+check_ltlspec -p "! F (prg1.location = c & prg2.location = c)"
+check_ctlspec -p "EF (prg1.location = c)"
+print_reachable_states
+reset
+read_model -i exclusion_mutua_fairness.smv
+flatten_hierarchy
+encode_variables
+build_model
+check_ltlspec -p "F (prg1.location = c)"
+quit
